@@ -3,3 +3,9 @@
   text-align: center;
   margin: 0 auto;
 }
+
+.slider {
+  width: 40%;
+  margin: 5%;
+  float: right;
+}

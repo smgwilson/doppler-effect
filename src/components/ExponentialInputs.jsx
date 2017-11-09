@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { setValue } from '../actions/index.js';
 import Slider from 'react-rangeslider'
 
 class ExponentialInputs extends Component {
-  constructor (props, context) {
-    super(props, context)
+  constructor (props) {
+    super(props)
     this.state = {
       value: 0
     }
@@ -16,14 +18,16 @@ class ExponentialInputs extends Component {
   handleChange = value => {
     this.setState({
       value: value
-    })
+    });
   };
 
   handleChangeComplete = () => {
-    console.log('Change event completed')
+    console.log('Change event completed');
+    this.props.setValue(this.state.value);
   };
 
   render () {
+    console.log('ExponentialInputs props', this.props);
     const { value } = this.state
     return (
       <div>
@@ -55,4 +59,4 @@ class ExponentialInputs extends Component {
   }
 }
 
-export default ExponentialInputs
+export default connect(null, { setValue })(ExponentialInputs);

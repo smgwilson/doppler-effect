@@ -1,23 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import star from '../images/star-small.png';
 import ExponentialInputs from './ExponentialInputs';
 
 class App extends Component {
-  constructor () {
-    super();
-
-    this.state = {
-      value: 100
-    }
-  }
-
-  onValueChange (newValue) {
-    this.setState({
-      value: newValue
-    })
-  }
-
   render() {
+    console.log('App state', this.state)
     const starColor = this.props.starColor ? 'doppler-color' : '';
     return (
       <div className="container">
@@ -25,15 +13,21 @@ class App extends Component {
         <div className="wrapper">
           <div className="main-image">
             <img src={star} alt="Star"/>
-            <div className="doppler doppler-blue"></div>
+            <div className="doppler doppler-indigo"></div>
           </div>
         </div>
           <div className="inputs">
-            <ExponentialInputs triggerChange={this.onValueChange.bind(this)}/>
+            <ExponentialInputs/>
           </div>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    appValue: state
+  };
+};
+
+export default connect(mapStateToProps, null)(App);

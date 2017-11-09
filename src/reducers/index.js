@@ -1,5 +1,4 @@
 import { SET_VALUE } from '../actions/index.js';
-import { combineReducers } from "redux";
 
 export const valueReducer = (state = 0, action) => {
   switch(action.type) {
@@ -10,6 +9,6 @@ export const valueReducer = (state = 0, action) => {
   }
 };
 
-export default combineReducers({ appVal: valueReducer });
+export default valueReducer;
 
 

@@ -11,10 +11,6 @@ class ExponentialInputs extends Component {
     }
   }
 
-  handleChangeStart = () => {
-    console.log('Change event started')
-  };
-
   handleChange = value => {
     this.setState({
       value: value

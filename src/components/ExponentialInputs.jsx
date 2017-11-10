@@ -17,6 +17,7 @@ class ExponentialInputs extends Component {
     });
   };
 
+  // after slider is dragged, dispatch redux method to set App state to slider state
   handleChangeComplete = () => {
     console.log('Change event completed');
     this.props.setValue(this.state.value);
@@ -26,7 +27,7 @@ class ExponentialInputs extends Component {
     console.log('ExponentialInputs props', this.props);
     const { value } = this.state
     return (
-      <div>
+      <div className="inputs">
         <div className="text-input">
           <label htmlFor="velocity">Velocity (km/s)</label>
           <input 
@@ -35,7 +36,7 @@ class ExponentialInputs extends Component {
             placeholder="0.0"
             min="-100.00" 
             max="100.00"
-            value={value}
+            value={value}  // display value from slider
             />
         </div>
         <div className='slider-input'>
@@ -48,7 +49,6 @@ class ExponentialInputs extends Component {
             onChange={this.handleChange}
             onChangeComplete={this.handleChangeComplete}
           />
-          <div className='value'></div>
         </div>
       </div>
     )

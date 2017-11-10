@@ -12,6 +12,7 @@ class App extends Component {
     this.setColor = this.setColor.bind(this);
   }
 
+  // use lifecycle hook to set new color when slider value changes
   componentWillReceiveProps(nextProps) {
     console.log('nextProps', nextProps.appValue);
     if (this.props.appValue !== nextProps.appValue) {
@@ -22,13 +23,13 @@ class App extends Component {
   setColor (val) {
     console.log('val', val);
     let newColor;
-    if (val < -5 && val >= -25){
+    if (val < 0 && val >= -25){
       newColor = 'violet';
     }  else if (val < -25 && val >= -75){
       newColor = 'indigo';
     } else if (val < -75){
       newColor = 'blue';
-    } else if (val > 5 && val <= 75){
+    } else if (val > 0 && val <= 75){
       newColor = 'magenta';
     } else if (val > 75){
       newColor = 'red';
@@ -41,14 +42,14 @@ class App extends Component {
   }
 
   render() {
-    console.log('App state', this.state)
+    const color = this.state.color;
     return (
       <div className="container">
         <h1>Doppler Effect</h1>
         <div className="wrapper">
           <div className="main-image">
             <img src={star} alt="Star"/>
-            <div className="doppler doppler-indigo"></div>
+            <div className={`doppler doppler-${color}`}></div>
           </div>
         </div>
           <div className="inputs">
@@ -59,6 +60,7 @@ class App extends Component {
   }
 }
 
+// use component state from slider to set app state
 const mapStateToProps = state => {
   return {
     appValue: state
